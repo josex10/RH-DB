@@ -15,8 +15,7 @@ CREATE TABLE `tbl_usuario_master` (
 /*
  STORE PROCEDURE TO INSERT RECORDS INTO THE TBL_USUARIO_MASTER
  */
-DELIMITER // 
-CREATE PROCEDURE SP_CRUD_USUARIO_MASTER_INSERT(
+DELIMITER / / CREATE PROCEDURE SP_CRUD_USUARIO_MASTER_INSERT(
     IN nombre TEXT(30),
     IN primer_apellido TEXT(30),
     IN segundo_apellido TEXT(30),
@@ -40,9 +39,7 @@ VALUES
         contrasena
     );
 
-END 
-// 
-DELIMITER ;
+END / / DELIMITER;
 
 /*
  STORED PROCEDURE TO UPDATE RECORDS INTO THE TBL_USUARIO_MASTER
@@ -64,24 +61,39 @@ SET
 WHERE
     clm_id = id;
 
-END 
-// 
-DELIMITER ;
+END / / DELIMITER;
 
 /*
-    STORE PROCEDURE LOGIN PROCESS FOR USUARIO MASTER 
-*/
-
-DELIMITER // 
-CREATE PROCEDURE SP_CUSTOM_USUARIO_MASTER_LOGIN(
-    IN correo TEXT(60), 
+ STORE PROCEDURE LOGIN PROCESS FOR USUARIO MASTER 
+ */
+DELIMITER / / CREATE PROCEDURE SP_CUSTOM_USUARIO_MASTER_LOGIN(
+    IN correo TEXT(60),
     IN contrasena TEXT(300)
-) 
-BEGIN
-SELECT clm_nombre, clm_primer_apellido, clm_segundo_apellido, clm_correo FROM
+) BEGIN
+SELECT
+    clm_nombre,
+    clm_primer_apellido,
+    clm_segundo_apellido,
+    clm_correo
+FROM
     `tbl_usuario_master`
 WHERE
-    clm_correo = correo && clm_contrasena = contrasena && clm_activo = 1;
-END 
-// 
-DELIMITER ;
+    clm_correo = correo & & clm_contrasena = contrasena & & clm_activo = 1;
+
+END / / DELIMITER;
+
+/*
+ STORE PROCEDURE TO GET ALL THE USARIO MASTER ACTIVE
+ */
+DELIMITER / / CREATE PROCEDURE SP_CRUD_USUARIO_MASTER_GET_ALL_ACTIVE() BEGIN
+SELECT
+    clm_nombre,
+    clm_primer_apellido,
+    clm_segundo_apellido,
+    clm_correo
+FROM
+    `tbl_usuario_master`
+WHERE
+    clm_activo = 1;
+
+END / / DELIMITER;
