@@ -74,15 +74,14 @@ DELIMITER ;
 
 DELIMITER // 
 CREATE PROCEDURE SP_CUSTOM_USUARIO_MASTER_LOGIN(
-    IN id INT,
     IN correo TEXT(60), 
     IN contrasena TEXT(300)
 ) 
 BEGIN
-SELECT COUNT(*) as result FROM
+SELECT clm_nombre, clm_primer_apellido, clm_segundo_apellido, clm_correo FROM
     `tbl_usuario_master`
 WHERE
-    clm_id = id && clm_correo = correo && clm_contrasena = contrasena && clm_activo = 1;
+    clm_correo = correo && clm_contrasena = contrasena && clm_activo = 1;
 END 
 // 
 DELIMITER ;
