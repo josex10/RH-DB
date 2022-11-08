@@ -3,6 +3,7 @@
  */
 CREATE TABLE `tbl_system_user` (
     `clm_id` INT NOT NULL AUTO_INCREMENT,
+    clm_username TEXT(30) NOT NULL,
     `clm_name` TEXT(30) NOT NULL,
     `clm_lastname` TEXT(30) NOT NULL,
     `clm_email` TEXT(60) NOT NULL,
@@ -17,3 +18,8 @@ CREATE TABLE `tbl_system_user` (
     FOREIGN KEY (clm_company_rel) REFERENCES tbl_system_company(clm_id),
     FOREIGN KEY (clm_role_rel)  REFERENCES tbl_admin_role(clm_id)
 );
+
+SELECT * FROM tbl_system_user;
+
+ALTER TABLE tbl_system_user
+ADD COLUMN clm_username TEXT(30) NOT NULL AFTER clm_id;
